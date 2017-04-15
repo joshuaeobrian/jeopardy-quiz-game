@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8"/>
+	<title>Title</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/gameStyleSheet.css}" href="../static/gameStyleSheet.css"/>
+	<link rel="stylesheet" type="text/css" th:href="@{/tileControlStyle.css}" href="../static/tileControlStyle.css"/>
+
+</head>
+<body>
+<div class="container">
+	<div class="tile-container">
+		<div class="user-section">
+			<div>
+				<h3 class="info">Player: <span>Josh0494</span></h3>
+				<h3 class="info">Bank: $<span>1000</span></h3>
+			</div>
+			<div  id="timer">
+				<h3 class="info clearfix">Timer: <span id="clock">02:00</span></h3>
+			</div>
+		</div>
+		<div class="tile-category-container" th:each="category : ${categories}">
+			<div class="tile">
+				<div>
+					<h4 th:text="${category.category}">Dinosaurs</h4>
+				</div>
+			</div>
+			<div class="tile flip-container" th:each="question : ${category.questions}">
+				<div class="flippable">
+
+					<div class="front">
+						<div>
+							<input type="hidden" value="" th:value="${question.id}"/>
+							<input type="hidden" value="" th:value="${question.categoryId}"/>
+							<label>$<span th:text="${question.value}">200</span></label>
+						</div>
+					</div>
+					<div class="back">
+						<div>
+							<label th:text="${question.question}">What is life</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--<div class="tile"th:remove="all">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>400</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile" th:remove="all">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>600</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+
+			<!--<div class="tile" th:remove="all">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>800</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile" th:remove="all">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>1000</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--<div class="tile-category-container" th:remove="all">-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<h4>Dinosaurs</h4>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>200</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>400</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>600</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>800</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>1000</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--<div class="tile-category-container" th:remove="all">-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<h4>Dinosaurs</h4>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div class="front">-->
+						<!--<div>-->
+							<!--<label>200</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="back">-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>400</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>600</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>800</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>1000</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--<div class="tile-category-container" th:remove="all">-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<h4>Dinosaurs</h4>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div class="front">-->
+						<!--<div>-->
+							<!--<label>200</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="back">-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>400</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>600</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>800</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>1000</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+		<!--<div class="tile-category-container" th:remove="all">-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<h4>Dinosaurs</h4>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div class="front">-->
+						<!--<div>-->
+							<!--<label>200</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div class="back">-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>400</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>600</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>800</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+			<!--<div class="tile">-->
+				<!--<div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>1000</label>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<div>-->
+						<!--<div>-->
+							<!--<label>What is life</label>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</div>-->
+			<!--</div>-->
+		</div>
+	</div>
+
+	<div class="response-board">
+		<div>
+			<form>
+				<button class="options">Option 1.</button>
+				<button class="options">Option 2.</button>
+				<button class="correct">Option 3.</button>
+				<button class="wrong">Option 4.</button>
+
+			</form>
+		</div>
+	</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script th:src="@{/js/board.js}" src="../static/js/board.js"></script>
+</body>
+</html>
