@@ -11,9 +11,10 @@
 <div class="container">
 	<div class="tile-container">
 		<div class="user-section">
-			<div>
-				<h3 class="info">Player: <span>Josh0494</span></h3>
-				<h3 class="info">Bank: $<span>1000</span></h3>
+			<div th:object="${player}" >
+				<input type="hidden" id="sessionId" name="sessionId" value="" th:value="${sessionId}"/>
+				<h3 class="info">Player: <span th:text="*{username}">Josh0494</span></h3>
+				<h3 class="info">Bank: $<span id="points" th:text="*{points.points}">1000</span></h3>
 			</div>
 			<div  id="timer">
 				<h3 class="info clearfix">Timer: <span id="clock">02:00</span></h3>
@@ -30,8 +31,8 @@
 
 					<div class="front">
 						<div>
-							<input type="hidden" value="" th:value="${question.id}"/>
-							<input type="hidden" value="" th:value="${question.categoryId}"/>
+							<input type="hidden" name="questionid" value="" th:value="${question.id}"/>
+							<input type="hidden" name="categoryid" value="" th:value="${question.categoryId}"/>
 							<label>$<span th:text="${question.value}">200</span></label>
 						</div>
 					</div>
@@ -425,5 +426,6 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script th:src="@{/js/board.js}" src="../static/js/board.js"></script>
+<script th:src="@{/js/answer.js}" src="../static/js/answer.js"></script>
 </body>
 </html>

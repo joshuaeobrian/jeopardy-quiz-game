@@ -2,20 +2,39 @@
  * Created by josh on 4/14/17.
  */
 $(document).ready(function () {
-
+	const buttons = document.querySelectorAll(".response-board button");
 	$(".flippable").click(function (e) {
 		$(this).toggleClass("flip");
-		let x = e.target.parentNode;
-		console.log(x);
+		let sectionClicked = e.target.parentNode;
+		let questionid;
+		let categoryid;
+		//console.log(x.tagName);
+		if(sectionClicked.tagName == 'LABEL'){
 
-		//when tile clicked show options of answers
-		/**
-		 *  make post request
-		 */
+			sectionClicked = sectionClicked.parentNode;
+		}
+		questionid = sectionClicked.querySelectorAll('input')[0].value;
+		categoryid = sectionClicked.querySelectorAll('input')[1].value;
 
-		/**
-		 * load options into button
-		 */
+
+		$.post("/Card",
+			{
+				questionId : questionid,
+				categoryId : categoryid,
+			},
+			function (response) {
+				console.log(response);
+
+				for(let i = 0; i < buttons.length;i++){
+					buttons[i].textContent = response[i]['answer'];
+					buttons[i].value = response[i]['id'];
+					buttons[i].id = response[i]['questionId'];
+
+				}
+
+			}
+		);
+
 	});
 
 	var minutes = 2;
