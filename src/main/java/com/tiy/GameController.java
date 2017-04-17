@@ -30,9 +30,9 @@ public class GameController {
 
 	@PostMapping("/checkLogin")
 	public String checkLogin(String username, String password){
-
-		System.out.println(username+" "+password);
-		return "redirect:/game?playerId="+1;
+		Player player  = playerRepository.getPlayerByUsernameAndPassword(username,password);
+		//get player id
+		return "redirect:/game?playerId="+player.getId();
 	}
 
 	@RequestMapping("/game")

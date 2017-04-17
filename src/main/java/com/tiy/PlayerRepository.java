@@ -60,4 +60,22 @@ public class PlayerRepository {
 						" VALUES(?) RETURNING id",
 				new Object[]{playerId},(rs,i)-> rs.getInt("id"));
 	}
+
+	public Player getPlayerByUsernameAndPassword(String username, String password) {
+
+		return template.queryForObject("SELECT player.id as id, player.firstname as fname,player.lastname as lname," +
+						" player.username as uname,player.password as password, c.amount as amount from player as player " +
+						"JOIN currency as c on player.id = c.player_id WHERE player.username = ? AND password=?",new Object[]{username, password},
+				(rs,i)-> new Player(
+						rs.getInt("id"),
+						rs.getString("fname"),
+						rs.getString("lname"),
+						rs.getString("uname"),
+						rs.getString("password"),
+						new Points(
+								rs.getInt("id"),
+								rs.getInt("amount")
+						)
+				));
+	}
 }
