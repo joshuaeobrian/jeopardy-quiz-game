@@ -21,6 +21,12 @@ public class GameApi {
 	@Autowired
 	QuestionRepository questionRepository;
 
+	/**
+	 * sends a list of answers to load buttons
+	 * @param questionId
+	 * @param categoryId
+	 * @return
+	 */
 	@PostMapping("/Card")
 	public List<Answer> getAnswers(Integer questionId, Integer categoryId){
 
@@ -31,6 +37,13 @@ public class GameApi {
 		return answerRepository.getQuestionAnswers(questionId, categoryId);
 	}
 
+	/**
+	 * need to maybe return answer object and player
+	 * @param answerId
+	 * @param questionId
+	 * @param sessionId
+	 * @return
+	 */
 	@PostMapping("/checkAnswer")
 	public Integer checkAnswer(Integer answerId, Integer questionId, Integer sessionId){
 		Player player = playerRepository.getPlayerBySessionId(sessionId);

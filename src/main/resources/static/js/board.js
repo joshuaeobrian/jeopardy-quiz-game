@@ -37,9 +37,13 @@ $(document).ready(function () {
 
 	});
 
-	var minutes = 2;
+	var minutes = 1;
 	var seconds = 0;
 	const padding = "000";
+
+	/**
+	 * need to make timer stop
+	 */
 	function countDown() {
 		let timer = document.getElementById("clock");
 		let currentSec;
@@ -50,6 +54,9 @@ $(document).ready(function () {
 			seconds = 59;
 			if(minutes<=0){
 				minutes = 0;
+				if(seconds<1){
+					clearInterval(timer);
+				}
 			}
 		}
 		if(seconds<10){
@@ -70,6 +77,6 @@ $(document).ready(function () {
 			timer.innerHTML = currentMin + ":" + currentSec;
 		}
 	}
-	setInterval(countDown,1000)
+	let timer = setInterval(countDown,1000)
 	
 });
