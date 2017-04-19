@@ -32,7 +32,12 @@ public class GameController {
 	public String checkLogin(String username, String password){
 		Player player  = playerRepository.getPlayerByUsernameAndPassword(username,password);
 		//get player id
-		return "redirect:/game?playerId="+player.getId();
+		if(player != null) {
+			return "redirect:/game?playerId=" + player.getId();
+		}else{
+			return"redirect:/login";
+		}
+
 	}
 
 	@RequestMapping("/game")
