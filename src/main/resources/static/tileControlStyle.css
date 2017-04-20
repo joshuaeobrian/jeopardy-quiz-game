@@ -9,18 +9,20 @@
 .flip-container{
 	perspective: 1000;
 	/*margin: 10px;*/
-	/*float: left;*/
-	/*cursor: pointer;*/
+	float: left;
+	cursor: pointer;
 	}
 .flip{
 	transform: rotateY(180deg);
 	}
 .back {
 	transform: rotateY(180deg);
-	/*font-size: 14px;*/
+	font-size: 16px;
 	border:1px solid whitesmoke;
 	font-family: Verdana;
 	color: whitesmoke;
+	margin: auto;
+	background: #006891;
 	}
 .flip-container, .front, .back {
 	width: 100%;
@@ -34,7 +36,7 @@
 .front, .back {
 	backface-visibility: hidden;
 	position: absolute;
-	top: 0;
+	/*top: 0;*/
 	left: 0;
 	}
 .front label{
@@ -42,5 +44,9 @@
 	font-size: 20px;
 	font-weight: bold;
 	line-height: 5;
-	color:rgb(212,175,55);
+	color:#FFCE11;
+	}
+.done{
+	color: transparent;
+	
 	}

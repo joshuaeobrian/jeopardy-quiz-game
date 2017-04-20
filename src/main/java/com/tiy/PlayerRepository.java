@@ -78,4 +78,14 @@ public class PlayerRepository {
 						)
 				));
 	}
+
+	public Integer createNewPlayer(Player player){
+		Integer id = template.queryForObject("INSERT INTO player(firstname, lastname, username, password) VALUES(?,?,?,?) RETURNING id",
+				new Object[] {player.getFirstName(),player.getLastName(),player.getUsername(),player.getPassword()},
+				(rs,i)-> rs.getInt("id"));
+
+		template.update("INSERT INTO currency(player_id)VALUES (?)",new Object[] {id});
+
+		return id;
+	}
 }
