@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/loginStylesheet.css}" href="../static/loginStylesheet.css"/>
 	<meta charset="UTF-8"/>
 	<title>Login</title>
@@ -12,15 +13,15 @@
 		<div class="input-fields">
 			<h2>Login</h2>
 			<div>
-				<input name="username" type="text" placeholder="Username"/>
+				<input name="username" type="text" placeholder="Username" required="required"/>
 			</div>
 			<div>
-				<input name="password" type="password" placeholder="Password"/>
+				<input name="password" type="password" placeholder="Password" required="required"/>
 			</div>
 		</div>
 		<div>
 			<button>Login</button>
-			<a href="#"><label>Sign-up</label></a>
+			<a href="/templates/sign_up.html" th:href="@{/signup}"><label>Sign-up</label></a>
 		</div>
 	</form>
 </div>

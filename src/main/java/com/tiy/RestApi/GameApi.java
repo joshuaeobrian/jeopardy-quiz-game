@@ -45,7 +45,7 @@ public class GameApi {
 	 * @return
 	 */
 	@PostMapping("/checkAnswer")
-	public Integer checkAnswer(Integer answerId, Integer questionId, Integer sessionId){
+	public Object[] checkAnswer(Integer answerId, Integer questionId, Integer sessionId){
 		Player player = playerRepository.getPlayerBySessionId(sessionId);
 		Answer answer = answerRepository.getAnswerByID(answerId);
 		Question question = questionRepository.getQuestionById(questionId);
@@ -56,7 +56,7 @@ public class GameApi {
 		}
 		playerRepository.updatePoints(player);
 			//send back Current Value
-		return player.getPoints().getPoints();
+		return new Object[]{answer.isAnswer(),player.getPoints().getPoints()};
 
 	}
 }
