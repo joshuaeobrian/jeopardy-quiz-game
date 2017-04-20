@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
  */
 @Controller
 @SessionAttributes({"id","name"})
-
 public class GameController {
 	@Autowired
 	private CategoryRepository categoryRepository;
@@ -34,6 +33,13 @@ public class GameController {
 		return "login";
 	}
 
+	/**
+	 * Need to clean up the try catch
+	 * @param modelMap
+	 * @param username
+	 * @param password
+	 * @return
+	 */
 	@PostMapping("/checkLogin")
 	public String checkLogin(ModelMap modelMap, String username, String password){
 		String page = "";
@@ -56,6 +62,12 @@ public class GameController {
 		return "sign_up";
 	}
 
+	/**
+	 * add new play then directs them to a new session
+	 * @param modelMap
+	 * @param player
+	 * @return
+	 */
 	@PostMapping("/addAccount")
 	public String addNewAccount(ModelMap modelMap, Player player){
 		Integer id = playerRepository.createNewPlayer(player);
@@ -63,6 +75,12 @@ public class GameController {
 		return "redirect:/game";
 	}
 
+	/**
+	 * Starts game with player
+	 * @param model
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping("/game")
 	public String game(Model model, @ModelAttribute("id") Integer id){
 		model.addAttribute("sessionId", playerRepository.startSession(id));
