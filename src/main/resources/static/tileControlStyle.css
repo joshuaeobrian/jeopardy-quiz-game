@@ -50,3 +50,32 @@
 	color: transparent;
 	
 	}
+
+@media screen and (max-width: 800px) {
+	.flip-container, .front, .back {
+		width: 100%;
+		height: 50px;
+		/*line-height: 100px;*/
+		text-align: center;
+		/*font-size: 14px;*/
+		border-radius: 5px;
+		}
+	.front label{
+		width:100%;
+		font-size: 14px;
+		font-weight: bold;
+		line-height: 5;
+		color:#FFCE11;
+		}
+	}
+
+@media screen and (max-width: 500px) {
+	.flip-container, .front, .back {
+		width: 100%;
+		height: 50px;
+		/*line-height: 100px;*/
+		text-align: center;
+		/*font-size: 14px;*/
+		border-radius: 5px;
+		}
+	}

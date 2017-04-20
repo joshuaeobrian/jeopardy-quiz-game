@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<title>Title</title>
 	<link rel="stylesheet" type="text/css" th:href="@{/gameStyleSheet.css}" href="../static/gameStyleSheet.css"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/tileControlStyle.css}" href="../static/tileControlStyle.css"/>
@@ -413,14 +414,13 @@
 	</div>
 
 	<div class="response-board">
-		<div>
-			<form>
-				<button class="options">Option 1.</button>
-				<button class="options">Option 2.</button>
-				<button class="options">Option 3.</button>
-				<button class="options">Option 4.</button>
-
-			</form>
+		<div id="top-buttons">
+			<button class="options">Option 1.</button>
+			<button class="options">Option 2.</button>
+		</div>
+		<div id="bottom-buttons">
+			<button class="options">Option 3.</button>
+			<button class="options">Option 4.</button>
 		</div>
 	</div>
 </div>

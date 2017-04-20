@@ -4,24 +4,34 @@
 $(document).ready(function () {
 	const buttons = document.querySelectorAll(".response-board button");
 	$(".flippable").click(function (e) {
-
+		$("#overlay").click(function (e) {
+			console.log(e.target);
+		});
 		const flipped = document.getElementsByClassName("flip");
 		console.log(flipped.length);
 		if(flipped.length <1) {
 			$(this).toggleClass("flip");
 			$(this).attr("id", "overlay");
 
+
 			let sectionClicked = e.target.parentNode;
+			let panel = sectionClicked.parentNode;
 			let questionid;
 			let categoryid;
 			//console.log(x.tagName);
 			if (sectionClicked.tagName == 'LABEL') {
 
 				sectionClicked = sectionClicked.parentNode;
+				panel = sectionClicked.parentNode.parentNode;
+
 			}
+			console.log(panel);
+			const x= panel.querySelectorAll(".back");
+			//x[0].style.height = "100px";
+			//x[0].style.fontSize = "11px";
 			questionid = sectionClicked.querySelectorAll('input')[0].value;
 			categoryid = sectionClicked.querySelectorAll('input')[1].value;
-
+			//panel.style.height = "5em";
 
 			$.post("/Card",
 				{
@@ -76,8 +86,6 @@ $(document).ready(function () {
 		}else{
 			currentMin = minutes;
 		}
-		//var currentMinute = padding.substring(0, padding.length - minutes.length) + minutes;
-		//var currentSec = padding.substring(0, padding.length - seconds.length) + seconds;
 		if(minutes <=0 && seconds <=0 ) {
 
 		}else{

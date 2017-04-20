@@ -36,15 +36,20 @@ public class GameController {
 
 	@PostMapping("/checkLogin")
 	public String checkLogin(ModelMap modelMap, String username, String password){
-		Player player  = playerRepository.getPlayerByUsernameAndPassword(username,password);
-		//get player id
-		if(player != null) {
-			modelMap.put("id", player.getId());
-			modelMap.put("name",player.getUsername());
-			return "redirect:/game";
-		}else{
-			return"redirect:/login";
+		String page = "";
+		try {
+			Player player = playerRepository.getPlayerByUsernameAndPassword(username, password);
+			//get player id
+//			if (player != null) {
+				modelMap.put("id", player.getId());
+				modelMap.put("name", player.getUsername());
+				return "redirect:/game";
+//			}
+		}catch (Exception e) {
+			return  "redirect:/login";
+
 		}
+
 	}
 	@RequestMapping("/signup")
 	public String signUp(){
