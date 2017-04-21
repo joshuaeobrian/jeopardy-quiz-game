@@ -26,11 +26,11 @@
 	}
 .flip-container, .front, .back {
 	width: 100%;
-	height: 100px;
 	/*line-height: 100px;*/
 	text-align: center;
 	/*font-size: 14px;*/
 	border-radius: 5px;
+	height:80px;
 	}
 
 .front, .back {
@@ -38,12 +38,13 @@
 	position: absolute;
 	/*top: 0;*/
 	left: 0;
+	cursor: pointer;
 	}
 .front label{
 	width:100%;
 	font-size: 20px;
 	font-weight: bold;
-	line-height: 5;
+	line-height: 3.5;
 	color:#FFCE11;
 	}
 .done{

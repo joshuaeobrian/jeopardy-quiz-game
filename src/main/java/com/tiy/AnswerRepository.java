@@ -43,4 +43,10 @@ public class AnswerRepository {
 
 
 	}
+
+	public Integer getCorrectAnswerID(Integer questionId) {
+		return template.queryForObject("SELECT id from answers where question_id=? and isanswer=true",
+				new Object[]{questionId},
+				(rs, i)-> rs.getInt("id"));
+	}
 }

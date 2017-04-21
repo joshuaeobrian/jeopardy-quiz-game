@@ -18,7 +18,7 @@
 				<h3 class="info">Bank: $<span id="points" th:text="*{points.points}">1000</span></h3>
 			</div>
 			<div  id="timer">
-				<h3 class="info clearfix">Timer: <span id="clock">02:00</span></h3>
+				<h3 class="info clearfix">Timer: <span id="clock">00:30</span></h3>
 			</div>
 		</div>
 		<div class="tile-category-container" th:each="category : ${categories}">
@@ -414,6 +414,9 @@
 	</div>
 
 	<div class="response-board">
+		<div class="response-board-header">
+			<h4>Please choose an Answer!</h4>
+		</div>
 		<div id="top-buttons">
 			<button class="options">Option 1.</button>
 			<button class="options">Option 2.</button>
@@ -421,6 +424,18 @@
 		<div id="bottom-buttons">
 			<button class="options">Option 3.</button>
 			<button class="options">Option 4.</button>
+		</div>
+	</div>
+	<div class="pop-up-window" id="overlay-pop">
+		<div class="pop-up">
+			<div class="pop-up-container">
+				<h3>Game Over</h3>
+				<label>Would you like to start a New Game?</label>
+				<div class="pop-up-btn">
+					<button>Yes</button>
+					<button>No</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
