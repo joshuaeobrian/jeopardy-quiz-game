@@ -17,14 +17,14 @@ body{
 .tile-container{
 	/*border: 1px solid black;*/
 	display: block;
-	width: 75%;
-	margin:  0 auto;
+	width: 90%;
+	margin:  20px auto;
 	background: #3B4049;
 	padding: 30px;
 	border-radius: 5px;
 	}
 .user-section{
-	/*border: 1px solid black;*/
+
 	line-height: 1;
 	
 	}
@@ -32,7 +32,7 @@ body{
 	clear: both;
 	overflow: auto;
 	zoom: 1;
-	/*z-index: 1;*/
+	
 	}
 .info{
 	margin: 2px;
@@ -50,7 +50,7 @@ h3.info{
 
 .tile-category-container{
 	display: inline-block;
-	/*border: 1px solid red;*/
+	
 	width: 19.3%;
 	color: whitesmoke;
 	
@@ -78,17 +78,11 @@ h3.info{
 	}
 
 .response-board{
-	border: 1px solid red;
+	/*border: 1px solid red;*/
 	width: 90%;
 	display: block;
-	margin: 30px auto;
-	/*position: fixed;*/
-	/*bottom: 0;*/
-	/*left:0;*/
-	/*right:0;*/
-	/*background: #3B4049;*/
-	
-	/*padding-top: 0;*/
+	margin: 10px auto;
+
 	border-radius: 5px;
 	}
 #top-buttons,#bottom-buttons{
@@ -102,10 +96,12 @@ h3.info{
 	width: 49.7%;
 	height: 100px;
 	color: whitesmoke;
+	cursor: pointer;
 	}
 .response-board .options:hover{
 	background: #A7B3CE;
 	font-size: 20px;
+	cursor: pointer;
 	}
 .options{
 	background: #6F7789;
@@ -125,19 +121,23 @@ h3.info{
 #timer{
 	float: right;
 	}
+.response-board-header{
+	color: whitesmoke;
+	text-align: center;
+	font-size: 22px;
+	background: #3b4049;
+	border-radius: 5px;
+	padding: 3px;
+	margin-bottom: 10px;
+	
+	}
 
 #overlay {
 	position: fixed;
 	top: 8;
 	left: 0;
 	width: 100%;
-	/*height: 40%;*/
-	/*background-color: rgba(100,100,100, .0);*/
-	/*margin: auto;*/
-	/*filter:alpha(opacity=50);*/
-	/*-moz-opacity:0.5;*/
-	/*-khtml-opacity: 0.5;*/
-	/*opacity: .8;*/
+
 	z-index: 10000;
 	}
 #overlay label{
@@ -145,49 +145,79 @@ h3.info{
 	margin-top: 5%;
 	padding-top: 5%;
 	}
+#overlay-pop {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0, .8);
+	z-index: 10000;
+	}
+.pop-up{
+	background: #3b4049;
+	box-shadow: 0em 1em 2em 0em rgba(0,0,0,.9);
+	border-radius: 5px;
+	padding: 20px;
+	width: 50%;
+	height: 150px;
+	margin: 10% auto;
+	color: whitesmoke;
+	}
+.pop-up-container{
+	margin: 10px;
+	}
+.pop-up-btn{
+	padding: 20px;
+	}
+.pop-up-container button{
+	border: 1px solid whitesmoke;
+	font-size: 18px;
+	color: whitesmoke;
+	padding: 10px;
+	border-radius: 5px;
+	width: 25%;
+	}
+.pop-up-container button:first-child{
+	background: #00e8aa;
+	
+	}
+.pop-up-container button:last-child{
+	background: #f26430;
+	
+	}
+
 
 @media screen and (max-width: 800px) {
-	/**{*/
-		/*border: 1px solid red;*/
-		/*}*/
-	/*body {*/
-		/*background-color: lightgreen;*/
-		/*}*/
+
 	.tile-category-container{
 		display: inline-block;
-		/*border: 1px solid red;*/
-		/*width: 19.3%;*/
+	
 		color: whitesmoke;
 		
 		}
 	.tile-container{
-		/*border: 1px solid black;*/
+
 		display: block;
 		width: 100%;
-		margin:  0 auto;
+		margin:  5% auto;
 		background: #3B4049;
 		padding: 5px;
 		border-radius: 5px;
 		}
 	.response-board{
-		border: 1px solid red;
+	
 		width: 100%;
 		display: block;
 		margin: 5px auto;
-		/*position: fixed;*/
-		/*bottom: 0;*/
-		/*left:0;*/
-		/*right:0;*/
-		/*background: #3B4049;*/
-		
-		/*padding-top: 0;*/
+	
 		border-radius: 5px;
 		}
 	#top-buttons,#bottom-buttons{
 		width: 100%;
 		}
 	.response-board button{
-		/*background: transparent;*/
+	
 		border: 1px solid white;
 		margin: 0;
 		border-radius: 5px;
@@ -206,18 +236,41 @@ h3.info{
 		}
 	#overlay {
 		position: fixed;
-		top: 0;
+		top: 100px;
 		left: 0;
 		width: 100%;
-		height: 500px;
-		/*background-color: rgba(100,100,100, .0);*/
-		/*margin: auto;*/
-		/*filter:alpha(opacity=50);*/
-		/*-moz-opacity:0.5;*/
-		/*-khtml-opacity: 0.5;*/
-		/*opacity: .8;*/
+		height: 50px;
+
 		z-index: 10000;
 		}
+	.pop-up{
+		background: #3b4049;
+		box-shadow: 0em 1em 2em 0em rgba(0,0,0,.9);
+		border-radius: 5px;
+		padding: 20px;
+		width: 50%;
+		height: 150px;
+		margin: 10% auto;
+		color: whitesmoke;
+		}
+	.pop-up-container{
+		margin: 10px;
+		}
+	.pop-up-btn{
+		padding: 20px 0 0 0;
+		
+		width: 100%;
+		}
+	.pop-up-container button{
+		border: 1px solid whitesmoke;
+		font-size: 18px;
+		color: whitesmoke;
+		padding: 10px;
+		border-radius: 5px;
+		width: 47%;
+		cursor: pointer;
+		}
+  
 	}
 @media screen and (max-width: 500px) {
 	.tile-category-container{
@@ -228,7 +281,7 @@ h3.info{
 		/*border: 1px solid black;*/
 		display: block;
 		width: 100%;
-		margin:  0 auto;
+		margin:  5% auto;
 		background: #3B4049;
 		padding: 0;
 		
@@ -238,7 +291,7 @@ h3.info{
 		border: 1px solid white;
 		margin: 5px auto;
 		border-radius: 5px;
-		font-size: 16px;
+		font-size: 12px;
 		width: 49%;
 		height: 100px;
 		color: whitesmoke;

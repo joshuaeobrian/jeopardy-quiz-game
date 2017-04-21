@@ -48,6 +48,7 @@ public class GameApi {
 	public Object[] checkAnswer(Integer answerId, Integer questionId, Integer sessionId){
 		Player player = playerRepository.getPlayerBySessionId(sessionId);
 		Answer answer = answerRepository.getAnswerByID(answerId);
+		Integer correctAnswerID = answerRepository.getCorrectAnswerID(questionId);
 		Question question = questionRepository.getQuestionById(questionId);
 		if(!answer.isAnswer()){
 			player.getPoints().removePoints(question.getValue());
@@ -56,7 +57,18 @@ public class GameApi {
 		}
 		playerRepository.updatePoints(player);
 			//send back Current Value
-		return new Object[]{answer.isAnswer(),player.getPoints().getPoints()};
+		return new Object[]{answer.isAnswer(),player.getPoints().getPoints(), correctAnswerID};
 
+	}
+	@PostMapping("/outOfTime")
+	public Object[] outOfTime(Integer questionId, Integer sessionId){
+		System.out.println("Player: "+ sessionId);
+		System.out.println("Question id: "+questionId);
+		Player player = playerRepository.getPlayerBySessionId(sessionId);
+		Question question = questionRepository.getQuestionById(questionId);
+
+		player.getPoints().removePoints(question.getValue());
+		playerRepository.updatePoints(player);
+		return new Object[]{player.getPoints().getPoints(),answerRepository.getCorrectAnswerID(questionId)};
 	}
 }

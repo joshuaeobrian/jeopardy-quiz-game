@@ -2,96 +2,162 @@
  * Created by josh on 4/14/17.
  */
 $(document).ready(function () {
-	const buttons = document.querySelectorAll(".response-board button");
-	$(".flippable").click(function (e) {
-		$("#overlay").click(function (e) {
-			console.log(e.target);
-		});
-		const flipped = document.getElementsByClassName("flip");
-		console.log(flipped.length);
-		if(flipped.length <1) {
-			$(this).toggleClass("flip");
-			$(this).attr("id", "overlay");
+	$(".pop-up-window").hide();
+	$(".response-board button").prop("disabled", true);
+	const sessionId = document.getElementById("sessionId");
+
+	$(".response-board-header h4").html("Please Select A Tile!");
+
+		const buttons = document.querySelectorAll(".response-board button");
+
+		$(".flippable").click(function (e) {
+
+			if($("#points").text() !=0) {
+				const flipped = document.getElementsByClassName("flip");
+				if (flipped.length < 1) {
+					$(this).toggleClass("flip");
+					$(this).attr("id", "overlay");
+
+					let questionid;
+					let categoryid;
+
+					const backBoard            = $("#overlay .back");
+					const input                = $("#overlay");
+					backBoard [0].style.height = "150px";
+					console.log();
+					questionid = $("#overlay input[name=questionid]").val();
+					categoryid = $("#overlay input[name=categoryid]").val();
 
 
-			let sectionClicked = e.target.parentNode;
-			let panel = sectionClicked.parentNode;
-			let questionid;
-			let categoryid;
-			//console.log(x.tagName);
-			if (sectionClicked.tagName == 'LABEL') {
+					$.post("/Card",
+						{
+							questionId: questionid,
+							categoryId: categoryid,
+						},
+						function (response) {
+							console.log(response);
+							$(".response-board-header h4").html("Please choose an Answer!");
 
-				sectionClicked = sectionClicked.parentNode;
-				panel = sectionClicked.parentNode.parentNode;
 
-			}
-			console.log(panel);
-			const x= panel.querySelectorAll(".back");
-			//x[0].style.height = "100px";
-			//x[0].style.fontSize = "11px";
-			questionid = sectionClicked.querySelectorAll('input')[0].value;
-			categoryid = sectionClicked.querySelectorAll('input')[1].value;
-			//panel.style.height = "5em";
+							$(".response-board button").prop("disabled", false);
+							for (let i = 0; i < buttons.length; i++) {
+								buttons[i].textContent = response[i]['answer'];
+								buttons[i].value       = response[i]['id'];
+								buttons[i].id          = response[i]['questionId'];
+								buttons[i].className   = "options";
+							}
 
-			$.post("/Card",
-				{
-					questionId: questionid,
-					categoryId: categoryid,
-				},
-				function (response) {
-					console.log(response);
+						}
+					);
+				}
+				let minutes   = 0;
+				let seconds   = 30;
 
-					for (let i = 0; i < buttons.length; i++) {
-						buttons[i].textContent = response[i]['answer'];
-						buttons[i].value       = response[i]['id'];
-						buttons[i].id          = response[i]['questionId'];
-						buttons[i].className   = "options";
+
+				let isTimeToStop = false;
+				function countDown() {
+					console.log(isTimeToStop);
+					let timer = document.getElementById("clock");
+
+					let currentSec;
+					let currentMin;
+					seconds--;
+					if (seconds < 0) {
+						minutes--;
+						seconds = 30;
+						if (minutes <= 0) {
+							minutes = 0;
+
+						}
+					}
+					if(seconds > 10){
+						isTimeToStop = true;
+					}
+					if (seconds < 10) {
+						currentSec = "0" + seconds;
+						if(seconds < 1 && isTimeToStop){
+							console.log("Stop");
+							timer.innerHTML =  "00:00";
+
+							$.post("/outOfTime",
+								{
+									questionId: $("#overlay input[name=questionid]").val(),
+									sessionId: sessionId.value,
+								},
+								function (response) {
+									$("#points").html(response[0]);
+									$("#overlay").addClass("done");
+									$("#overlay").removeClass("flip");
+
+									$("#overlay").removeAttr("id");
+									$(".response-board-header h4").html("Sorry, Ran out of time!");
+									for(let i =0; i < buttons.length; i++){
+										if(buttons[i].value == response[1]){
+											buttons[i].className = "correct";
+										}
+
+									}
+								}
+
+							);
+							Stop();
+						}
+					} else {
+						currentSec = seconds;
+					}
+					if (minutes < 10) {
+						currentMin = "0" + minutes;
+					} else {
+						currentMin = minutes;
+					}
+					if (minutes <= 0 && seconds <= 0) {
+
+					} else {
+						timer.innerHTML = currentMin + ":" + currentSec;
+
 					}
 
+
 				}
-			);
-		}
 
-	});
-
-	var minutes = 1;
-	var seconds = 0;
-	const padding = "000";
-
-	/**
-	 * need to make timer stop
-	 */
-	function countDown() {
-		let timer = document.getElementById("clock");
-		let currentSec;
-		let currentMin;
-		seconds--;
-		if(seconds<=0){
-			minutes--;
-			seconds = 59;
-			if(minutes<=0){
-				minutes = 0;
-				if(seconds<1){
+				let timer = setInterval(function(){countDown(false)}, 500)
+				
+				function Stop() {
 					clearInterval(timer);
 				}
-			}
-		}
-		if(seconds<10){
-			currentSec = "0"+seconds;
-		}else{
-			currentSec = seconds;
-		}
-		if(minutes<10){
-			currentMin = "0"+minutes;
-		}else{
-			currentMin = minutes;
-		}
-		if(minutes <=0 && seconds <=0 ) {
 
-		}else{
-			timer.innerHTML = currentMin + ":" + currentSec;
-		}
-	}
-	let timer = setInterval(countDown,1000)
-	
+				/**
+				 * if Timer runs out of time flash out of time
+				 * disable buttons
+				 * then deduct points
+				 */
+			}else{
+				$(".pop-up-window").show();
+				$(".response-board-header h4").html("Sorry No More Points!");
+
+
+				$(".pop-up-window h3").html("Sorry, out of money!");
+				$(".pop-up-window label").html("Would you like to log off?");
+				$(".pop-up-btn button").click(function (e) {
+					const button = e.target.textContent;
+					console.log(button);
+					const action = {
+							Yes: ()=>{
+								document.location.href = "/login";
+							},
+							No: ()=>{
+								$(".pop-up-window").hide();
+							}
+						}
+					action[button]();
+					});
+
+			}
+			$(".response-board button").click(function () {
+				let timer = document.getElementById("clock");
+				timer.innerHTML = "00:00";
+				Stop();
+			});
+		});
+
 });
